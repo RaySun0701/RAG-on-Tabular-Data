@@ -14,3 +14,31 @@ The TabFact dataset is a large-scale benchmark for table-based fact verification
   - **Refuted** (factually incorrect based on the table).
 
 Tables consist of structured numerical and categorical data, requiring multi-row and multi-column reasoning.
+
+The original TabFact data store claims and tables separately. We combine them together in JSON format.
+```json
+"2-15401676-3.html.csv": [
+    [
+        "haroldo be mention as a brazil scorer for 2 different game",
+        "4 of the 5 game be for the south american championship",
+        "..."
+    ],
+    [1, 1, 1, 1, 1, 0, 0, 0, 0, 0],
+    "1919 in brazilian football",
+    {
+        "columns": ["date", "result", "score", "brazil scorers", "competition"],
+        "data": [
+            ["may 11, 1919", "w", "6 - 0", "friedenreich (3), neco (2), haroldo", "south american championship"],
+            ["..."]
+        ]
+    }
+]
+```
+
+## Summary of Data Structure
+- **Keys (file names)**: Represent different datasets.
+- **Values**: Each dataset is stored as a list with:
+  1. **Claims** (Claims about the dataset).
+  2. **Binary Labels** (evaluating correctness of claims).
+  3. **Topic** (topic for the data).
+  4. **Tabular Data** (column names and row values).
